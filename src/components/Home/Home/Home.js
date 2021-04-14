@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../../Shared/Navbar/Navbar';
+import Advantages from '../Advantages/Advantages';
 import Header from '../Header/Header';
 import Services from '../Services/Services';
 import Works from '../Works/Works';
@@ -11,6 +12,7 @@ const Home = () => {
             <Header></Header>
             <Services></Services>
             <Works></Works>
+            <Advantages></Advantages>
         </div>
     );
 };
