@@ -26,7 +26,7 @@ const Services = () => {
         <section className=" mt-5">
             <div className="container mt-5">
                 <h1 className="text-center"> Services We Provide</h1>
-            <hr style={{width:"500px",margin:"auto"}} className="text-center"/>
+                <hr style={{width:"100%",margin:"auto"}} />
                 <div className="row mt-5">
                     {
                         services.map(service => <Service service={service}> </Service>)
