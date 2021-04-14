@@ -11,11 +11,11 @@ const Header = () => {
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
         </div>
         <div class="carousel-inner">
-            <div style={{height:"720px"}} class="carousel-item active">
-                <img src={img} class="d-block w-100" alt="..."/>
+            <div  class="carousel-item active">
+                <img  src={img} class=" w-100" alt="..."/>
             </div>
-            <div style={{height:"720px"}} class="carousel-item">
-                <img  src={cImg} class="d-block w-100" alt="..."/>
+            <div  class="carousel-item">
+                <img   src={cImg} class="d-block w-100" alt="..."/>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
