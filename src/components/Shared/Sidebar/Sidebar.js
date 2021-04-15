@@ -18,7 +18,7 @@ const Sidebar = ({sidebarOpen}) => {
     }
     return (
         <div className="sidebar d-flex flex-row justify-content-between col-md-2 py-5 px-4" style={sidebarStyle}>
-            {/* <FcMenu size={"25px"} className="d-flex justify-content-end"/> */}
+           
             <ul className="list-unstyled mt-5">
                 <li>
                     <Link to="/dashboard" className="text-white" style={{textDecoration:"none"}}>

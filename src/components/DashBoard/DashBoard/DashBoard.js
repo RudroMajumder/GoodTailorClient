@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from '../../Shared/Navbar/Navbar';
 import { FcMenu} from "react-icons/fc";
-import Sidebar from '../Sidebar/Sidebar';
+import Sidebar from '../../Shared/Sidebar/Sidebar';
+import Appointments from '../Appointments/Appointments';
 
 const DashBoard = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
@@ -25,6 +26,7 @@ const DashBoard = () => {
                     <Sidebar sidebarOpen={sidebarOpen}></Sidebar>
                 </div>
                 <div className="col-md-10 col-sm-10">
+                    <Appointments></Appointments>
                 </div>
             </div>
         </div>
