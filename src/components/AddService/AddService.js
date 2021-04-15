@@ -46,7 +46,6 @@ const AddService = () => {
             newInfo = {...serviceInfo,img:imgURL};
         }
         setServiceInfo(newInfo);
-        console.log(data)
         fetch('http://localhost:5000/addService',{
             method:"POST",
             headers:{"Content-Type":"application/json"},

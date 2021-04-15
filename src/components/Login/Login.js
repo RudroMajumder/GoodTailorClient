@@ -31,11 +31,11 @@ const Login = () => {
         }).catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
-            console.log(errorMessage,errorCode);
+            // console.log(errorMessage,errorCode);
         });
     }
 
-    console.log(loggedInUser);
+    // console.log(loggedInUser);
     return (
         <div >
             <Navbar/>

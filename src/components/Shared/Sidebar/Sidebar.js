@@ -20,13 +20,13 @@ const Sidebar = ({sidebarOpen}) => {
            
             <ul className="list-unstyled mt-5">
                 <li>
-                    <Link to="/dashboard" className="text-white" style={{textDecoration:"none"}}>
-                        <FcMenu size={"25px"}/> <span> Dashboard </span>
+                    <Link to="/book" className="text-white" style={{textDecoration:"none"}}>
+                        <FcMenu size={"25px"}/> <span> Book Appointment </span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/appointments" className="text-white" style={{textDecoration:"none"}}>
-                    <FcList size={"25px"}/> <span> Appointments </span>
+                    <Link to="/review" className="text-white" style={{textDecoration:"none"}}>
+                    <FcList size={"25px"}/> <span> Review </span>
                     </Link>
                 </li>
                 <li>
