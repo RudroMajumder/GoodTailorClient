@@ -21,11 +21,11 @@ const DashBoard = () => {
             <Navbar></Navbar>
             
             <div className="row">
-                <div className="col-md-2 col-sm-2">
+                <div className="col-md-2 col-sm-2 ">
                     <FcMenu size={"50px"} onClick={handleSidebar} style={toggleStyle} className="toggle"/>
                     <Sidebar sidebarOpen={sidebarOpen}></Sidebar>
                 </div>
-                <div className="col-md-10 col-sm-10">
+                <div className="col-md-10 col-sm-10 ">
                     <Appointments></Appointments>
                 </div>
             </div>

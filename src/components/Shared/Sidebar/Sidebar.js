@@ -4,7 +4,6 @@ import { FcMenu,FcList,FcAddDatabase,FcBusinessman,FcSettings } from "react-icon
 import './Sidebar.css'
 
 const Sidebar = ({sidebarOpen}) => {
-    console.log(sidebarOpen);
     let sidebarStyle;
 
     if(sidebarOpen){
