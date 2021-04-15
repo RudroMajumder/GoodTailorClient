@@ -1,27 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Service from '../Service/Service';
 import measurements from '../../../images/body measurement.jpeg';
 import cutting from '../../../images/cloth-cutting.jpg';
 import resize from '../../../images/resizing.jpg';
 
-const services = [
-    {
-        name:"Body Measurements",
-        cost: 35,
-        img : measurements
-    },
-    {
-        name: "Cutting Out",
-        cost: 25,
-        img : cutting
-    },
-    {
-        name: "Resize",
-        cost: 40,
-        img : resize
-    }
-]
+// const services = [
+//     {
+//         name:"Body Measurements",
+//         cost: 35,
+//         img : measurements
+//     },
+//     {
+//         name: "Cutting Out",
+//         cost: 25,
+//         img : cutting
+//     },
+//     {
+//         name: "Resize",
+//         cost: 40,
+//         img : resize
+//     }
+// ]
 const Services = () => {
+    const [services,setServices] = useState([]);
+    useEffect(()=>{
+        fetch('http://localhost:5000/services')
+        .then( res=> res.json())
+        .then( data => setServices(data))
+    },[])
     return (
         <section className=" mt-5">
             <div className="container mt-5">
