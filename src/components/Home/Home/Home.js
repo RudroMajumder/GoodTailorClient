@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from '../../Shared/Footer/Footer';
 import Navbar from '../../Shared/Navbar/Navbar';
 import Advantages from '../Advantages/Advantages';
-import Header from '../Header/Header';
+import Header from '../../Shared/Header/Header';
 import Services from '../Services/Services';
 import Testimonials from '../Testimonials/Testimonials';
 import Works from '../Works/Works';
