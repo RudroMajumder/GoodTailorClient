@@ -1,11 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../../App';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Service = ({service}) => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext);
     const name = service.name;
     const cost = service.cost;
+    useEffect(()=>{
+        AOS.init({duration:2000})
+    },[])
 
     const setAppointment = () =>{
         const appointmentInfo = {...loggedInUser};
@@ -14,7 +19,7 @@ const Service = ({service}) => {
         sessionStorage.setItem('serviceCost',cost);
     }
     return (
-        <div className="col-md-4 col-lg-4 col-sm-12 mb-5 d-flex justify-content-center">
+        <div className="col-md-4 col-lg-4 col-sm-12 mb-5 d-flex justify-content-center" data-aos="fade-right">
             <div className="card rounded" style={{width: "18rem"}}>
                 <img src={service.img} className="card-img-top w-100" alt="..."/>
                 <div className="card-body">

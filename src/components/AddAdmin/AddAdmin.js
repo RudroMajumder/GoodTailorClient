@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 const AddAdmin = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
     const [email,setEmail] = useState();
-    const { register, handleSubmit, watch, formState: { errors } }  = useForm();
+    const { register, handleSubmit, formState: { errors } }  = useForm();
 
     const handleSidebar = () =>{
         if(!sidebarOpen){

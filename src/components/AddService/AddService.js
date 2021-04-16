@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import Sidebar from '../Shared/Sidebar/Sidebar';
 import { FcMenu} from "react-icons/fc";
 import Navbar from '../Shared/Navbar/Navbar';
-import axios from 'axios';
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 const AddService = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
+    const { register, handleSubmit, formState: { errors } }  = useForm();
     const [serviceInfo,setServiceInfo ] = useState({});
     const [imgURL,setImgURL] = useState(null);
-    const { register, handleSubmit, watch, formState: { errors } }  = useForm();
 
     const handleSidebar = () =>{
         if(!sidebarOpen){
@@ -37,7 +37,6 @@ const AddService = () => {
           })
           .catch(function (error) {
           });
-          let newInfo;
     }
 
     const onSubmit = data => {

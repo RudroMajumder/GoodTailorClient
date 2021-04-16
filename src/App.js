@@ -9,7 +9,6 @@ import Login from './components/Login/Login';
 import DashBoard from './components/DashBoard/DashBoard/DashBoard';
 import PrivateRoute from './components/Login/PrivateRoute';
 import AddService from './components/AddService/AddService';
-import Appointments from './components/DashBoard/Appointments/Appointments';
 import AddAdmin from './components/AddAdmin/AddAdmin';
 import BookAppointment from './components/BookAppointment/BookAppointment';
 import ManageService from './components/ManageService/ManageService';
@@ -29,27 +28,24 @@ function App() {
           <Route  path="/login">
             <Login></Login>
           </Route>
-          <Route path="/dashboard">
+          <PrivateRoute path="/dashboard">
             <DashBoard></DashBoard>
-          </Route>
+          </PrivateRoute>
           <PrivateRoute path="/review">
             <AddReview></AddReview>
           </PrivateRoute>
           <PrivateRoute  path="/book">
             <BookAppointment></BookAppointment>
           </PrivateRoute>
-          <Route path="/addService">
+          <PrivateRoute path="/addService">
             <AddService></AddService>
-          </Route>
-          <Route path="/appointments">
-            <Appointments></Appointments>
-          </Route>
-          <Route path="/addAdmin">
+          </PrivateRoute>
+          <PrivateRoute path="/addAdmin">
             <AddAdmin></AddAdmin>
-          </Route>
-          <Route path ="/manage">
+          </PrivateRoute>
+          <PrivateRoute path ="/manage">
             <ManageService></ManageService>
-          </Route>
+          </PrivateRoute>
         </Switch>
       </Router>
     </UserContext.Provider>

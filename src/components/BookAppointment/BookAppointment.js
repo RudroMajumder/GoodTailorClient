@@ -7,9 +7,9 @@ import { UserContext } from '../../App';
 
 const BookAppointment = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
-    const { register, handleSubmit, watch, formState: { errors } }  = useForm();
+    const { register, handleSubmit,formState: { errors } }  = useForm();
 
-    const [loggedInUser,setLoggedInUser] = useContext(UserContext);
+    const [loggedInUser] = useContext(UserContext);
     const [appointmentInfo,setAppointmentInfo] = useState({});
 
     const handleSidebar = () =>{

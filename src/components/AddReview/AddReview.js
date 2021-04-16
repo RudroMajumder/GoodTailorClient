@@ -7,8 +7,8 @@ import { UserContext } from '../../App';
 
 const AddReview = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
-    const { register, handleSubmit, watch, formState: { errors } }  = useForm();
-    const [loggedInUser,setLoggedInUser] = useContext(UserContext);
+    const { register, handleSubmit, formState: { errors } }  = useForm();
+    const [loggedInUser] = useContext(UserContext);
     const [review,setReview] = useState({});
     const handleSidebar = () =>{
         if(!sidebarOpen){

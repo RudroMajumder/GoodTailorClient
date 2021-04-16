@@ -1,0 +1,23 @@
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../App';
+import AdminDisplay from './AdminDisplay';
+import UserDisplay from './UserDisplay';
+
+const Appointments = ({appointments,isAdmin}) => {
+    console.log(appointments);
+    return (
+        <section>
+            <h2>Appointments</h2>
+            <div className="row">
+                <div >
+                {
+                isAdmin?<AdminDisplay appointments={appointments}></AdminDisplay> : 
+                <UserDisplay appointments={appointments}> </UserDisplay>
+                }
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Appointments;

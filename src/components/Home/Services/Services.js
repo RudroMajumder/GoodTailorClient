@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Service from '../Service/Service';
-import measurements from '../../../images/body measurement.jpeg';
-import cutting from '../../../images/cloth-cutting.jpg';
-import resize from '../../../images/resizing.jpg';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Services = () => {
     const [services,setServices] = useState([]);
+
+    useEffect(()=>{
+        AOS.init({duration:2000})
+    },[])
     useEffect(()=>{
         fetch('http://localhost:5000/services')
         .then( res=> res.json())
         .then( data => setServices(data))
     },[])
     return (
-        <section className=" mt-5">
+        <section className=" mt-5" data-aos="fade-up">
             <div className="container mt-5">
                 <h1 className="text-center"> Services We Provide</h1>
                 <hr style={{width:"100%",margin:"auto"}} />

@@ -35,7 +35,6 @@ const Login = () => {
         });
     }
 
-    console.log(loggedInUser);
     return (
         <div >
             <Navbar/>

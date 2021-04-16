@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FcMenu,FcList,FcAddDatabase,FcBusinessman,FcSettings } from "react-icons/fc";
 import './Sidebar.css'
 
-const Sidebar = ({sidebarOpen}) => {
+const Sidebar = ({sidebarOpen,isAdmin}) => {
+
     let sidebarStyle;
-
-
     if(sidebarOpen){
         sidebarStyle = {
             left:"0" 
@@ -22,6 +21,11 @@ const Sidebar = ({sidebarOpen}) => {
            
             <ul className="list-unstyled mt-5">
                 <li>
+                    <Link to="/dashboard" className="text-white" style={{textDecoration:"none"}}>
+                        <FcList size={"25px"}/> <span>Appointments </span>
+                    </Link>
+                </li>
+                <li>
                     <Link to="/book" className="text-white" style={{textDecoration:"none"}}>
                         <FcMenu size={"25px"}/> <span> Book Appointment </span>
                     </Link>
@@ -31,26 +35,23 @@ const Sidebar = ({sidebarOpen}) => {
                     <FcList size={"25px"}/> <span> Review </span>
                     </Link>
                 </li>
-                <li>
-                    <Link to="/allAppointments" className="text-white" style={{textDecoration:"none"}}>
-                        <FcList size={"25px"}/> <span> All Appointments </span>
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/addService" className="text-white" style={{textDecoration:"none"}}>
-                        <FcAddDatabase size={"25px"}/> <span> Add Service </span>
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/addAdmin" className="text-white" style={{textDecoration:"none"}}>
-                        <FcBusinessman size={"25px"}/> <span> Add Admin </span>
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/manage" className="text-white" style={{textDecoration:"none"}}>
-                        <FcSettings size={"25px"}/> <span> Manage Service </span>
-                    </Link>
-                </li>
+                {isAdmin && <div>
+                        <li>
+                            <Link to="/addService" className="text-white" style={{textDecoration:"none"}}>
+                                <FcAddDatabase size={"25px"}/> <span> Add Service </span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/addAdmin" className="text-white" style={{textDecoration:"none"}}>
+                                <FcBusinessman size={"25px"}/> <span> Add Admin </span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/manage" className="text-white" style={{textDecoration:"none"}}>
+                                <FcSettings size={"25px"}/> <span> Manage Service </span>
+                            </Link>
+                        </li>
+                    </div>}
             </ul>
         </div>
     );
