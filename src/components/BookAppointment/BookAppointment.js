@@ -26,7 +26,7 @@ const BookAppointment = () => {
     }
 
     const onSubmit = data => {
-        const appointmentInfo = {...loggedInUser,service:serviceName,cost:serviceCost}
+        const appointmentInfo = {...loggedInUser,service:serviceName,cost:serviceCost,status:"Pending"}
         fetch('http://localhost:5000/addAppointment',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
