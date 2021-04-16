@@ -6,6 +6,7 @@ import './Sidebar.css'
 const Sidebar = ({sidebarOpen}) => {
     let sidebarStyle;
 
+
     if(sidebarOpen){
         sidebarStyle = {
             left:"0" 
@@ -15,6 +16,7 @@ const Sidebar = ({sidebarOpen}) => {
             left:"-100%"
         }
     }
+
     return (
         <div className="sidebar d-flex flex-row justify-content-between col-md-2 py-5 px-4" style={sidebarStyle}>
            

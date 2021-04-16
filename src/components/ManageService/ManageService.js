@@ -45,7 +45,7 @@ const ManageService = () => {
                     <FcMenu size={"50px"} onClick={handleSidebar} style={toggleStyle} className="toggle"/>
                     <Sidebar sidebarOpen={sidebarOpen}></Sidebar>
                 </div>
-                <div className="col-md-10 col-sm-10 col-lg-10 mt-5 p-5 w-75">
+                <div className="col-md-10 col-sm-10 col-lg-10 mt-5 p-5 ">
                     <h2> Manage Services </h2>
                     <div class="table-responsive">
                         <table class="table  table-bordered border-success">

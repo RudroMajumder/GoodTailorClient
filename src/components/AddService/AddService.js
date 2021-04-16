@@ -58,7 +58,6 @@ const AddService = () => {
             }
         })
     };
-    console.log(serviceInfo)
     return (
         <section>
             <Navbar></Navbar>
@@ -71,15 +70,15 @@ const AddService = () => {
                 <div className="col-md-10 col-sm-10 mt-5 p-5">
                     <h2> Add service </h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="form-group w-50 mt-3">
+                    <div className="form-group  mt-3">
                         <input type="text" {...register("name")} name="name" placeholder="Service Name" className="form-control" onBlur={handleBlur}/>
                         {errors.name && <span className="text-danger">This field is required</span>}
                     </div>
-                    <div className="form-group w-50 mt-3">
+                    <div className="form-group  mt-3">
                         <input type="text" {...register("cost")} name="cost" placeholder="Service cost" className="form-control" onBlur={handleBlur}/>
                         {errors.name && <span className="text-danger">This field is required</span>}
                     </div>
-                    <div className="form-group w-50 mt-3">
+                    <div className="form-group  mt-3">
                         <input type="file"  name="image"  className="form-control" onChange={handleChange}/>
                         {errors.image && <span className="text-danger">This field is required</span>}
                     </div>

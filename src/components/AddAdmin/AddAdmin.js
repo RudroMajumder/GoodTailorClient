@@ -50,7 +50,7 @@ const AddAdmin = () => {
                 <div className="col-md-10 col-sm-10 mt-5 p-5">
                     <h2> Add an Admin </h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="form-group w-50 mt-3">
+                    <div className="form-group  mt-3">
                         <input type="text" {...register("email")} name="email" placeholder="Admins Email" className="form-control" onBlur={handleBlur}/>
                         {errors.email && <span className="text-danger">This field is required</span>}
                     </div>                   

@@ -4,7 +4,6 @@ import { FcMenu} from "react-icons/fc";
 import Navbar from '../Shared/Navbar/Navbar';
 import { useForm } from "react-hook-form";
 import { UserContext } from '../../App';
-import { useParams } from 'react-router';
 
 const BookAppointment = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
@@ -12,8 +11,6 @@ const BookAppointment = () => {
 
     const [loggedInUser,setLoggedInUser] = useContext(UserContext);
     const [appointmentInfo,setAppointmentInfo] = useState({});
-    const {name} = useParams();
-    console.log(name)
 
     const handleSidebar = () =>{
         if(!sidebarOpen){
@@ -24,7 +21,6 @@ const BookAppointment = () => {
     }
     const serviceName= sessionStorage.getItem('serviceName');
     const serviceCost= sessionStorage.getItem('serviceCost');
-    console.log(serviceName,serviceCost)
     const toggleStyle={
         backgroundColor:"#3A4256"
     }

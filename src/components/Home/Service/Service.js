@@ -4,12 +4,11 @@ import { UserContext } from '../../../App';
 
 const Service = ({service}) => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext);
-    console.log(loggedInUser)   
     const name = service.name;
     const cost = service.cost;
 
     const setAppointment = () =>{
-        const appointmentInfo = {...loggedInUser,service:name,cost:cost};
+        const appointmentInfo = {...loggedInUser};
         setLoggedInUser(appointmentInfo);
         sessionStorage.setItem('serviceName',name);
         sessionStorage.setItem('serviceCost',cost);

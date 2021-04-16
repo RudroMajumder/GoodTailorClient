@@ -25,7 +25,7 @@ const Login = () => {
         .signInWithPopup(provider)
         .then((result) => {
             const user = result.user;
-            const signedInUser = {name:user.displayName, email:user.email};
+            const signedInUser = {name:user.displayName, email:user.email,photo:user.photoURL};
             setLoggedInUser(signedInUser);
             history.replace(from);
         }).catch((error) => {
@@ -35,7 +35,7 @@ const Login = () => {
         });
     }
 
-    // console.log(loggedInUser);
+    console.log(loggedInUser);
     return (
         <div >
             <Navbar/>
