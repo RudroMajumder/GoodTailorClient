@@ -7,9 +7,12 @@ const Service = ({service}) => {
     console.log(loggedInUser)   
     const name = service.name;
     const cost = service.cost;
+
     const setAppointment = () =>{
         const appointmentInfo = {...loggedInUser,service:name,cost:cost};
         setLoggedInUser(appointmentInfo);
+        sessionStorage.setItem('serviceName',name);
+        sessionStorage.setItem('serviceCost',cost);
     }
     return (
         <div className="col-md-4 col-lg-4 col-sm-12 mb-5 d-flex justify-content-center">
@@ -19,7 +22,7 @@ const Service = ({service}) => {
                     <h5 className="card-title">{service.name}  </h5>
                     <p className="card-text">${service.cost}</p>
                     {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                    <Link to="/book">
+                    <Link to='/book'>
                         <button className="btn btn-primary" onClick={setAppointment}> Set An Appointment </button>
                     </Link>
                 </div>

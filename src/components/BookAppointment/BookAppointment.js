@@ -4,6 +4,7 @@ import { FcMenu} from "react-icons/fc";
 import Navbar from '../Shared/Navbar/Navbar';
 import { useForm } from "react-hook-form";
 import { UserContext } from '../../App';
+import { useParams } from 'react-router';
 
 const BookAppointment = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
@@ -11,6 +12,8 @@ const BookAppointment = () => {
 
     const [loggedInUser,setLoggedInUser] = useContext(UserContext);
     const [appointmentInfo,setAppointmentInfo] = useState({});
+    const {name} = useParams();
+    console.log(name)
 
     const handleSidebar = () =>{
         if(!sidebarOpen){
@@ -19,21 +22,25 @@ const BookAppointment = () => {
             setSidebarOpen(false);
         }
     }
-
+    const serviceName= sessionStorage.getItem('serviceName');
+    const serviceCost= sessionStorage.getItem('serviceCost');
+    console.log(serviceName,serviceCost)
     const toggleStyle={
         backgroundColor:"#3A4256"
     }
 
     const onSubmit = data => {
+        const appointmentInfo = {...loggedInUser,service:serviceName,cost:serviceCost}
         fetch('http://localhost:5000/addAppointment',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(loggedInUser)
+            body:JSON.stringify(appointmentInfo)
         })
         .then(res=>res.json())
         .then(data => {
             if(data){
                 alert("Appointment Booked Successfully");
+                sessionStorage.clear()
             }
         })
     };
@@ -58,11 +65,11 @@ const BookAppointment = () => {
                         {errors.email && <span className="text-danger">This field is required</span>}
                     </div>                   
                     <div className="form-group w-100 mt-3">
-                        <input type="text"  name="service"  className="form-control" defaultValue={loggedInUser.service} />
+                        <input type="text"  name="service"  className="form-control" defaultValue={serviceName} />
                         {errors.email && <span className="text-danger">This field is required</span>}
                     </div>
                     <div className="form-group w-100 mt-3">
-                        <input type="text" defaultValue={loggedInUser.cost} name="email"  className="form-control"/>
+                         <input type="text" defaultValue={serviceCost} name="email"  className="form-control"/>
                         {errors.email && <span className="text-danger">This field is required</span>}
                     </div>
                     <input type="submit" className="btn btn-success mt-3 text-white"/>
