@@ -4,23 +4,6 @@ import measurements from '../../../images/body measurement.jpeg';
 import cutting from '../../../images/cloth-cutting.jpg';
 import resize from '../../../images/resizing.jpg';
 
-// const services = [
-//     {
-//         name:"Body Measurements",
-//         cost: 35,
-//         img : measurements
-//     },
-//     {
-//         name: "Cutting Out",
-//         cost: 25,
-//         img : cutting
-//     },
-//     {
-//         name: "Resize",
-//         cost: 40,
-//         img : resize
-//     }
-// ]
 const Services = () => {
     const [services,setServices] = useState([]);
     useEffect(()=>{

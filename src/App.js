@@ -12,6 +12,7 @@ import AddService from './components/AddService/AddService';
 import Appointments from './components/DashBoard/Appointments/Appointments';
 import AddAdmin from './components/AddAdmin/AddAdmin';
 import BookAppointment from './components/BookAppointment/BookAppointment';
+import ManageService from './components/ManageService/ManageService';
 
 export const UserContext = createContext();
 
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route path="/addAdmin">
             <AddAdmin></AddAdmin>
+          </Route>
+          <Route path ="/manage">
+            <ManageService></ManageService>
           </Route>
         </Switch>
       </Router>
