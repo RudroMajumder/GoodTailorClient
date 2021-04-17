@@ -13,6 +13,7 @@ import AddAdmin from './components/AddAdmin/AddAdmin';
 import BookAppointment from './components/BookAppointment/BookAppointment';
 import ManageService from './components/ManageService/ManageService';
 import AddReview from './components/AddReview/AddReview';
+import AllServices from './components/AllServices/AllServices';
 
 export const UserContext = createContext();
 
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route  path="/login">
             <Login></Login>
+          </Route>
+          <Route  path="/services">
+            <AllServices></AllServices>
           </Route>
           <PrivateRoute path="/dashboard">
             <DashBoard></DashBoard>
