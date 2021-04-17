@@ -12,20 +12,7 @@ const AddService = () => {
     const [imgURL,setImgURL] = useState(null);
     const [isAdmin,setIsAdmin] = useState(false);
     const email = sessionStorage.getItem("email");
-    const [isLoggedIn,setIsLoggedIn] = useState(false);
-    const [userName,setUserName] = useState(null);
-    useEffect(()=>{
-        const name = sessionStorage.getItem('name');
-        setUserName(name);
 
-    },[])
-    useEffect(()=>{
-        if(userName !=="undefined"){
-            setIsLoggedIn(true);
-        }else{
-            setIsLoggedIn(false);
-        }
-    },[userName])
     useEffect(()=>{
 
         fetch('https://dry-brook-25151.herokuapp.com/isAdmin',{
@@ -58,18 +45,14 @@ const AddService = () => {
         imgData.append("image",e.target.files[0]);
         axios.post('https://api.imgbb.com/1/upload', imgData)
           .then(function (response) {
-            setImgURL(response.data.data.display_url);
+              const newInfo = {...serviceInfo,img:response.data.data.display_url};
+            setServiceInfo(newInfo);
           })
           .catch(function (error) {
           });
     }
 
     const onSubmit = data => {
-        let newInfo;
-        if(imgURL){
-            newInfo = {...serviceInfo,img:imgURL};
-        }
-        setServiceInfo(newInfo);
         fetch('https://dry-brook-25151.herokuapp.com/addService',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
@@ -85,7 +68,7 @@ const AddService = () => {
     };
     return (
         <section>
-            <Navbar isLoggedIn={isLoggedIn} userName={userName}></Navbar>
+            <Navbar ></Navbar>
             <div className="row">
                 <div className="col-md-2 col-sm-2">
                 <FcMenu size={"50px"} onClick={handleSidebar} style={toggleStyle} className="toggle"/>
@@ -108,7 +91,7 @@ const AddService = () => {
                         {errors.image && <span className="text-danger">This field is required</span>}
                     </div>
                     
-                    {imgURL?<input type="submit" className="btn btn-success mt-3 text-white"/>:
+                    {serviceInfo.img?<input type="submit" className="btn btn-success mt-3 text-white"/>:
                     <input type="submit" className="btn btn-secondary mt-3 text-white" disabled/>}
                 </form>
                 </div>

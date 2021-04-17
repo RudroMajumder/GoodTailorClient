@@ -10,24 +10,24 @@ import About from '../About';
 
 const Home = () => {
 
-    const [isLoggedIn,setIsLoggedIn] = useState(false);
-    const [userName,setUserName] = useState(null);
-    useEffect(()=>{
-        const name = sessionStorage.getItem('name');
-        setUserName(name);
+    // const [isLoggedIn,setIsLoggedIn] = useState(false);
+    // const [userName,setUserName] = useState(null);
+    // useEffect(()=>{
+    //     const name = sessionStorage.getItem('name');
+    //     setUserName(name);
 
-    },[])
-    useEffect(()=>{
-        if(userName !=="undefined"){
-            setIsLoggedIn(true);
-        }else{
-            setIsLoggedIn(false);
-        }
-    },[userName])
+    // },[])
+    // useEffect(()=>{
+    //     if(userName !=="undefined"){
+    //         setIsLoggedIn(true);
+    //     }else{
+    //         setIsLoggedIn(false);
+    //     }
+    // },[userName])
 
     return (
         <div>
-            <Navbar isLoggedIn={isLoggedIn} userName={userName}></Navbar>
+            <Navbar ></Navbar>
             <Header></Header>
             <Services ></Services>
             <Works></Works>

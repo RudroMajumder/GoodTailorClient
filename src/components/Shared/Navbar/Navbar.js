@@ -1,8 +1,15 @@
 import React, {  useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({isLoggedIn,userName}) => {
-    console.log(isLoggedIn,userName)
+const Navbar = () => {
+    const [userName,setUserName] = useState();
+    useEffect(()=>{
+        const name = sessionStorage.getItem('name');
+        if(name !=="undefined"){
+            setUserName(name)
+        }
+    },[])
+
     const handleLogout = () =>{
         sessionStorage.clear();
         alert('You Have Been Logged Out');
@@ -32,11 +39,7 @@ const Navbar = ({isLoggedIn,userName}) => {
                     </li>
                     <li className="nav-item pe-5">
                       {
-                          isLoggedIn?<div className="d-flex nav-item" >
-                              <p className="nav-link pe-5" > {userName} </p >
-                              <li className="nav-link  pe-5 text-danger" onClick={handleLogout} style={logoutStyle}> Logout </li>
-                          </div>
-                          :
+                          userName? <p className="nav-link" > {userName} </p>:
                           <Link to="/login" className="nav-link" >  Login  </Link> 
                       }
                     </li>

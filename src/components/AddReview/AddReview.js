@@ -9,20 +9,8 @@ const AddReview = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
     const { register, handleSubmit, formState: { errors } }  = useForm();
     const [loggedInUser] = useContext(UserContext);
-    const [review,setReview] = useState({});    const [isLoggedIn,setIsLoggedIn] = useState(false);
-    const [userName,setUserName] = useState(null);
-    useEffect(()=>{
-        const name = sessionStorage.getItem('name');
-        setUserName(name);
-
-    },[])
-    useEffect(()=>{
-        if(userName !=="undefined"){
-            setIsLoggedIn(true);
-        }else{
-            setIsLoggedIn(false);
-        }
-    },[userName])
+    const [review,setReview] = useState({}); 
+    
     const handleSidebar = () =>{
         if(!sidebarOpen){
             setSidebarOpen(true);
@@ -55,7 +43,7 @@ const AddReview = () => {
     }
     return (
         <section>
-            <Navbar isLoggedIn={isLoggedIn} userName={userName}></Navbar>
+            <Navbar ></Navbar>
             <div className="row">
                 <div className="col-sm-2 col-md-2">
                     <FcMenu size={"50px"} onClick={handleSidebar} style={toggleStyle} className="toggle"/>

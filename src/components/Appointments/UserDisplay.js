@@ -2,7 +2,7 @@ import React from 'react';
 import UserAppointment from './UserAppointment';
 
 const UserDisplay = ({appointments}) => {
-    console.log(appointments)
+    // console.log(appointments)
     return (
         <section>
             <div className="container-fluid">
