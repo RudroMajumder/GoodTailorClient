@@ -41,7 +41,7 @@ const Login = () => {
             const user = result.user;
             const signedInUser = {name:user.displayName, email:user.email,photo:user.photoURL};
             setLoggedInUser(signedInUser);
-            history.replace(from);
+            history.push('/dashboard');
         }).catch((error) => {
             // var errorCode = error.code;
             // var errorMessage = error.message;
