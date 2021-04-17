@@ -1,33 +1,38 @@
 import React, { useEffect, useState } from 'react';
 
 const AdminDisplay = ({appointments}) => {
-    const [status,setStatus] = useState({});
+    const [status,setStatus] = useState();
 
     const handleOnGoingClick = (id) =>{
-        setStatus({});
-        const statusValue = {status:"OnGoing"};
+        let statusValue = {status:""}
+        statusValue = {status:"OnGoing",id:id};
         setStatus(statusValue);
-        fetch(`http://localhost:5000/update/${id}`,{
-            method:"PATCH",
-            headers:{"content-type":"application/json"},
-            body:JSON.stringify(status)
-        })
-        .then(res=>res.json())
-        .then(data=>console.log(data))
     }
     const handleDoneClick = (id) =>{
-        setStatus({});
-        const statusValue = {status:"Done"};
+        let statusValue = {status:""}
+         statusValue = {status:"Done",id:id};
         setStatus(statusValue);
-        fetch(`http://localhost:5000/update/${id}`,{
+    }
+    const handlePendingClick = (id) =>{
+        let statusValue = {status:""}
+         statusValue = {status:"Pending",id:id};
+        setStatus(statusValue);
+    }
+    console.log(status);
+    useEffect(()=>{
+        fetch(`http://localhost:5000/update`,{
             method:"PATCH",
             headers:{"content-type":"application/json"},
             body:JSON.stringify(status)
         })
         .then(res=>res.json())
-        .then(data=>console.log(data))
-    }
-    console.log(status);
+        .then(data=>{
+            if(data){
+                alert('Status Updated Successfully');
+                window.location.reload(true);
+            }
+        })
+    },[status])
     return (
         <div>
             <div class="table-responsive">
@@ -52,6 +57,10 @@ const AdminDisplay = ({appointments}) => {
                                             <td> {appointment.cost}</td>
                                             <td> {appointment.status}</td>
                                             <td className="d-flex justify-content-evenly">     
+                                                <button className="btn btn-outline-danger" 
+                                               onClick={()=>handlePendingClick(appointment._id)}>
+                                                   Pending
+                                                </button>
                                                <button className="btn btn-outline-warning" 
                                                onClick={()=>handleOnGoingClick(appointment._id)}>
                                                    OnGoing

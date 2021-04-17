@@ -4,7 +4,6 @@ import AdminDisplay from './AdminDisplay';
 import UserDisplay from './UserDisplay';
 
 const Appointments = ({appointments,isAdmin}) => {
-    console.log(appointments);
     return (
         <section>
             <h2>Appointments</h2>

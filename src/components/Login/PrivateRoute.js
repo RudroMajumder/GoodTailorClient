@@ -4,11 +4,12 @@ import { UserContext } from '../../App';
 
 const PrivateRoute = ({ children, ...rest }) => {
     const [loggedInUser] = useContext(UserContext);
+    const email = sessionStorage.getItem("email");
     return (
       <Route
         {...rest}
         render={({ location }) =>
-          (loggedInUser.email) ? (
+          (loggedInUser.email|| email)  ? (
             children
           ) : (
             <Redirect

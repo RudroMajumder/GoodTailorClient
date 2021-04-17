@@ -1,6 +1,7 @@
 import React, {  useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FcMenu,FcList,FcAddDatabase,FcBusinessman,FcSettings } from "react-icons/fc";
+import { BiExit } from "react-icons/bi";
 import './Sidebar.css'
 
 const Sidebar = ({sidebarOpen,isAdmin}) => {
@@ -14,6 +15,11 @@ const Sidebar = ({sidebarOpen,isAdmin}) => {
         sidebarStyle = {
             left:"-100%"
         }
+    }
+    const handleLogout = () =>{
+        sessionStorage.clear();
+        alert('You Have Been Logged Out');
+        window.location.reload(true);
     }
 
     return (
@@ -52,6 +58,11 @@ const Sidebar = ({sidebarOpen,isAdmin}) => {
                             </Link>
                         </li>
                     </div>}
+                        <li onClick={handleLogout}>
+                            <Link  className="text-white" style={{textDecoration:"none"}}>
+                                <BiExit size={"25px"}/> <span>Logout </span>
+                            </Link>
+                        </li>
             </ul>
         </div>
     );

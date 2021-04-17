@@ -10,27 +10,27 @@ const DashBoard = () => {
     const [loggedInUser] = useContext(UserContext);
     const [appointments,setAppointments] = useState([]);
     const [isAdmin,setIsAdmin] = useState(false);
-
+    const email = sessionStorage.getItem("email");
     useEffect(()=>{
 
         fetch('http://localhost:5000/isAdmin',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({email:loggedInUser.email})
+            body:JSON.stringify({email:email})
         })
         .then(res=>res.json())
         .then(data=>setIsAdmin(data))
-    },[loggedInUser.email])
+    },[email])
 
     useEffect(()=>{
         fetch('http://localhost:5000/appointments',{
             method:"POST",
             headers:{"content-type":"application/json"},
-            body:JSON.stringify({email:loggedInUser.email})
+            body:JSON.stringify({email:email})
         })
         .then(res=>res.json())
         .then(data=>setAppointments(data))
-    },[loggedInUser.email])
+    },[email])
 
     const handleSidebar = () =>{
         if(!sidebarOpen){
