@@ -8,6 +8,20 @@ const DashBoard = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
     const [appointments,setAppointments] = useState([]);
     const [isAdmin,setIsAdmin] = useState(false);
+    const [isLoggedIn,setIsLoggedIn] = useState(false);
+    const [userName,setUserName] = useState(null);
+    useEffect(()=>{
+        const name = sessionStorage.getItem('name');
+        setUserName(name);
+
+    },[])
+    useEffect(()=>{
+        if(userName !=="undefined"){
+            setIsLoggedIn(true);
+        }else{
+            setIsLoggedIn(false);
+        }
+    },[userName])
     const email = sessionStorage.getItem("email");
     useEffect(()=>{
 
@@ -43,7 +57,7 @@ const DashBoard = () => {
 
     return (
         <div >
-            <Navbar></Navbar>
+            <Navbar isLoggedIn={isLoggedIn} userName={userName}></Navbar>
             
             <div className="row">
                 <div className="col-md-2 col-sm-2 ">

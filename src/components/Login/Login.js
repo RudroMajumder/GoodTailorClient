@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import firebase from "firebase/app";
 import "firebase/auth";
 import { firebaseConfig } from './firebase.config';
@@ -10,6 +10,20 @@ import { useHistory, useLocation } from 'react-router';
 
 const Login = () => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext);
+    const [isLoggedIn,setIsLoggedIn] = useState(false);
+    const [userName,setUserName] = useState(null);
+    useEffect(()=>{
+        const name = sessionStorage.getItem('name');
+        setUserName(name);
+
+    },[])
+    useEffect(()=>{
+        if(userName !=="undefined"){
+            setIsLoggedIn(true);
+        }else{
+            setIsLoggedIn(false);
+        }
+    },[userName])
 
   const history = useHistory();
   const location = useLocation();
@@ -39,7 +53,7 @@ const Login = () => {
     sessionStorage.setItem( "name",loggedInUser.name);
     return (
         <div >
-            <Navbar/>
+            <Navbar isLoggedIn={isLoggedIn} userName={userName}> </Navbar>
             <div className="container-fluid login d-flex justify-content-center align-items-center">
                 <div className="row"> 
                     <div className="col-12 ">

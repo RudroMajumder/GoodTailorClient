@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Sidebar from '../Shared/Sidebar/Sidebar';
 import { FcMenu} from "react-icons/fc";
 import Navbar from '../Shared/Navbar/Navbar';
@@ -10,6 +10,20 @@ const BookAppointment = () => {
     const {  handleSubmit,formState: { errors } }  = useForm();
     const [shippingData, setShippingData] = useState(null);
     const [appointmentInfo,setAppointmentInfo] = useState(null);
+    const [isLoggedIn,setIsLoggedIn] = useState(false);
+    const [userName,setUserName] = useState(null);
+    useEffect(()=>{
+        const name = sessionStorage.getItem('name');
+        setUserName(name);
+
+    },[])
+    useEffect(()=>{
+        if(userName !=="undefined"){
+            setIsLoggedIn(true);
+        }else{
+            setIsLoggedIn(false);
+        }
+    },[userName])
 
     const handleSidebar = () =>{
         if(!sidebarOpen){
@@ -55,7 +69,7 @@ const BookAppointment = () => {
     console.log(shippingData)
     return (
         <section>
-            <Navbar></Navbar>
+            <Navbar isLoggedIn={isLoggedIn} userName={userName}></Navbar>
             <div className="row">
                 <div className="col-md-2 col-sm-2">
                     <FcMenu size={"50px"} onClick={handleSidebar} style={toggleStyle} className="toggle"/>
@@ -85,6 +99,7 @@ const BookAppointment = () => {
                     </form>
                     </div>
                     <div style={{display: shippingData ? 'block': 'none'}}>
+                        <h2 className="mb-5">Payment Info</h2>
                         <Payment handlePayment={handlePayment}></Payment>
                     </div>
                 </div>

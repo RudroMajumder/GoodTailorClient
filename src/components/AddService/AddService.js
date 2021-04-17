@@ -12,6 +12,20 @@ const AddService = () => {
     const [imgURL,setImgURL] = useState(null);
     const [isAdmin,setIsAdmin] = useState(false);
     const email = sessionStorage.getItem("email");
+    const [isLoggedIn,setIsLoggedIn] = useState(false);
+    const [userName,setUserName] = useState(null);
+    useEffect(()=>{
+        const name = sessionStorage.getItem('name');
+        setUserName(name);
+
+    },[])
+    useEffect(()=>{
+        if(userName !=="undefined"){
+            setIsLoggedIn(true);
+        }else{
+            setIsLoggedIn(false);
+        }
+    },[userName])
     useEffect(()=>{
 
         fetch('https://dry-brook-25151.herokuapp.com/isAdmin',{
@@ -71,7 +85,7 @@ const AddService = () => {
     };
     return (
         <section>
-            <Navbar></Navbar>
+            <Navbar isLoggedIn={isLoggedIn} userName={userName}></Navbar>
             <div className="row">
                 <div className="col-md-2 col-sm-2">
                 <FcMenu size={"50px"} onClick={handleSidebar} style={toggleStyle} className="toggle"/>

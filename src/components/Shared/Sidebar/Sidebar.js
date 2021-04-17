@@ -26,21 +26,23 @@ const Sidebar = ({sidebarOpen,isAdmin}) => {
         <div className="sidebar d-flex flex-row justify-content-between col-md-2 py-5 px-4" style={sidebarStyle}>
            
             <ul className="list-unstyled mt-5">
-                <li>
-                    <Link to="/dashboard" className="text-white" style={{textDecoration:"none"}}>
-                        <FcList size={"25px"}/> <span>Appointments </span>
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/book" className="text-white" style={{textDecoration:"none"}}>
-                        <FcMenu size={"25px"}/> <span> Book Appointment </span>
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/review" className="text-white" style={{textDecoration:"none"}}>
-                    <FcList size={"25px"}/> <span> Review </span>
-                    </Link>
-                </li>
+              {!isAdmin &&  <div>
+                    <li>
+                        <Link to="/dashboard" className="text-white" style={{textDecoration:"none"}}>
+                            <FcList size={"25px"}/> <span>Appointments </span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/book" className="text-white" style={{textDecoration:"none"}}>
+                            <FcMenu size={"25px"}/> <span> Book Appointment </span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/review" className="text-white" style={{textDecoration:"none"}}>
+                        <FcList size={"25px"}/> <span> Review </span>
+                        </Link>
+                    </li>
+                </div>}
                 {isAdmin && <div>
                         <li>
                             <Link to="/addService" className="text-white" style={{textDecoration:"none"}}>

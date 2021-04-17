@@ -8,8 +8,22 @@ const AddAdmin = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
     const [adminEmail,setAdminEmail] = useState();
     const { register, handleSubmit, formState: { errors } }  = useForm();
-        const [isAdmin,setIsAdmin] = useState(false);
+    const [isAdmin,setIsAdmin] = useState(false);
     const email = sessionStorage.getItem("email");
+    const [isLoggedIn,setIsLoggedIn] = useState(false);
+    const [userName,setUserName] = useState(null);
+    useEffect(()=>{
+        const name = sessionStorage.getItem('name');
+        setUserName(name);
+
+    },[])
+    useEffect(()=>{
+        if(userName !=="undefined"){
+            setIsLoggedIn(true);
+        }else{
+            setIsLoggedIn(false);
+        }
+    },[userName])
     useEffect(()=>{
 
         fetch('https://dry-brook-25151.herokuapp.com/isAdmin',{
@@ -54,7 +68,7 @@ const AddAdmin = () => {
     };
     return (
         <section>
-        <Navbar></Navbar>
+        <Navbar isLoggedIn={isLoggedIn} userName={userName}></Navbar>
             <div className="row">
                 <div className="col-md-2 col-sm-2">
                     <FcMenu size={"50px"} onClick={handleSidebar} style={toggleStyle} className="toggle"/>

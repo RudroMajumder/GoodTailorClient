@@ -1,26 +1,21 @@
 import React, {  useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-    const [isLoggedIn,setIsLoggedIn] = useState(false);
-    const [userName,setUserName] = useState(null);
-    useEffect(()=>{
-        const name = sessionStorage.getItem('name');
-        setUserName(name);
-
-    },[])
-    useEffect(()=>{
-        if(userName !=="undefined"){
-            setIsLoggedIn(true);
-        }else{
-            setIsLoggedIn(false);
-        }
-    },[userName])
+const Navbar = ({isLoggedIn,userName}) => {
+    console.log(isLoggedIn,userName)
+    const handleLogout = () =>{
+        sessionStorage.clear();
+        alert('You Have Been Logged Out');
+        window.location.reload(true);
+    }
+   const logoutStyle={
+       cursor:"pointer"
+   }
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-            <Link to="/home" className="navbar-brand" href="#">Good Tailor</Link>
+            <Link to="/" className="navbar-brand" href="#">Good Tailor</Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>
@@ -37,7 +32,12 @@ const Navbar = () => {
                     </li>
                     <li className="nav-item pe-5">
                       {
-                          isLoggedIn ?<p className="nav-link" > {userName} </p >:<Link to="/login" className="nav-link" >  Login  </Link> 
+                          isLoggedIn?<div className="d-flex nav-item" >
+                              <p className="nav-link pe-5" > {userName} </p >
+                              <li className="nav-link  pe-5 text-danger" onClick={handleLogout} style={logoutStyle}> Logout </li>
+                          </div>
+                          :
+                          <Link to="/login" className="nav-link" >  Login  </Link> 
                       }
                     </li>
                 </ul>

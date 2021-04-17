@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {  useEffect, useState } from 'react';
 import Footer from '../../Shared/Footer/Footer';
 import Navbar from '../../Shared/Navbar/Navbar';
 import Advantages from '../Advantages/Advantages';
@@ -9,9 +9,24 @@ import Works from '../Works/Works';
 
 const Home = () => {
 
+    const [isLoggedIn,setIsLoggedIn] = useState(false);
+    const [userName,setUserName] = useState(null);
+    useEffect(()=>{
+        const name = sessionStorage.getItem('name');
+        setUserName(name);
+
+    },[])
+    useEffect(()=>{
+        if(userName !=="undefined"){
+            setIsLoggedIn(true);
+        }else{
+            setIsLoggedIn(false);
+        }
+    },[userName])
+
     return (
         <div>
-            <Navbar></Navbar>
+            <Navbar isLoggedIn={isLoggedIn} userName={userName}></Navbar>
             <Header></Header>
             <Services ></Services>
             <Works></Works>
