@@ -8,6 +8,7 @@ const Service = ({service}) => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext);
     const name = service.name;
     const cost = service.cost;
+    const img = service.img;
     useEffect(()=>{
         AOS.init({duration:2000})
     },[])
@@ -17,6 +18,7 @@ const Service = ({service}) => {
         setLoggedInUser(appointmentInfo);
         sessionStorage.setItem('serviceName',name);
         sessionStorage.setItem('serviceCost',cost);
+        sessionStorage.setItem('img',img);
     }
     return (
         <div className="col-md-4 col-lg-4 col-sm-12 mb-5 d-flex justify-content-center" data-aos="fade-right">

@@ -21,12 +21,13 @@ const BookAppointment = () => {
     }
     const serviceName= sessionStorage.getItem('serviceName');
     const serviceCost= sessionStorage.getItem('serviceCost');
+    const img= sessionStorage.getItem('img');
     const toggleStyle={
         backgroundColor:"#3A4256"
     }
 
     const onSubmit = data => {
-        const appointmentInfo = {...loggedInUser,service:serviceName,cost:serviceCost,status:"Pending"}
+        const appointmentInfo = {...loggedInUser,service:serviceName,cost:serviceCost,img:img,status:"Pending"}
         fetch('http://localhost:5000/addAppointment',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
