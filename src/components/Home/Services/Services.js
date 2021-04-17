@@ -19,7 +19,7 @@ const Services = () => {
             <div className="container mt-5">
                 <h1 className="text-center"> Services We Provide</h1>
                 <hr style={{width:"100%",margin:"auto"}} />
-                <div className="row mt-5">
+                <div className="row mt-5 d-flex ">
                     {
                         services.map(service => <Service service={service}> </Service>)
                     }
