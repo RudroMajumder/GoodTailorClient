@@ -1,16 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../Shared/Sidebar/Sidebar';
 import { FcMenu} from "react-icons/fc";
 import Navbar from '../Shared/Navbar/Navbar';
 import { useForm } from "react-hook-form";
-import { UserContext } from '../../App';
 import Payment from '../Payment/Payment';
 
 const BookAppointment = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
-    const { register, handleSubmit,formState: { errors } }  = useForm();
+    const {  handleSubmit,formState: { errors } }  = useForm();
     const [shippingData, setShippingData] = useState(null);
-    const [loggedInUser] = useContext(UserContext);
     const [appointmentInfo,setAppointmentInfo] = useState(null);
 
     const handleSidebar = () =>{

@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { FcMenu,FcList,FcAddDatabase,FcBusinessman,FcSettings } from "react-icons/fc";
 import { BiExit } from "react-icons/bi";

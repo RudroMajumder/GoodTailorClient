@@ -1,22 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Testimonial from '../Testimonial/Testimonial';
-const testimonials = [
-    {
-        name: "Messi",
-        review: "Great Service",
-        img: "https://i.ibb.co/SxDVHnK/messi.jpg"
-    },
-    {
-        name: "Ronaldo",
-        review: "Great Service",
-        img: "https://i.ibb.co/dbBNdrT/cr7.jpg"
-    },
-    {
-        name: "Neymar",
-        review: "Great Service",
-        img: "https://i.ibb.co/wRJDKgq/neymar.jpg"
-    }
-]
 
 const Testimonials = () => {
     const [ reviews,setReviews] = useState([]);

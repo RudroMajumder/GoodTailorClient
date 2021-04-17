@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../../App';
 
 const Navbar = () => {
     const [isLoggedIn,setIsLoggedIn] = useState(false);

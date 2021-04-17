@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import Navbar from '../../Shared/Navbar/Navbar';
 import { FcMenu} from "react-icons/fc";
 import Sidebar from '../../Shared/Sidebar/Sidebar';
 import Appointments from '../../Appointments/Appointments';
-import { UserContext } from '../../../App';
 
 const DashBoard = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
-    const [loggedInUser] = useContext(UserContext);
     const [appointments,setAppointments] = useState([]);
     const [isAdmin,setIsAdmin] = useState(false);
     const email = sessionStorage.getItem("email");

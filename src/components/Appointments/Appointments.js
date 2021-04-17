@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../../App';
+import React from 'react';
 import AdminDisplay from './AdminDisplay';
 import UserDisplay from './UserDisplay';
 

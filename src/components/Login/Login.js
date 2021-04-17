@@ -29,8 +29,8 @@ const Login = () => {
             setLoggedInUser(signedInUser);
             history.replace(from);
         }).catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
+            // var errorCode = error.code;
+            // var errorMessage = error.message;
             // console.log(errorMessage,errorCode);
         });
     }
