@@ -1,16 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Sidebar from '../Shared/Sidebar/Sidebar';
 import { FcMenu} from "react-icons/fc";
 import Navbar from '../Shared/Navbar/Navbar';
 import { useForm } from "react-hook-form";
 import { UserContext } from '../../App';
+import Payment from '../Payment/Payment';
 
 const BookAppointment = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
     const { register, handleSubmit,formState: { errors } }  = useForm();
-
+    const [shippingData, setShippingData] = useState(null);
     const [loggedInUser] = useContext(UserContext);
-    const [appointmentInfo,setAppointmentInfo] = useState({});
+    const [appointmentInfo,setAppointmentInfo] = useState(null);
 
     const handleSidebar = () =>{
         if(!sidebarOpen){
@@ -25,13 +26,23 @@ const BookAppointment = () => {
     const toggleStyle={
         backgroundColor:"#3A4256"
     }
-
+    const handleBlur = e =>{
+        const appointmentDetails = {...appointmentInfo};
+        appointmentDetails[e.target.name] = e.target.value;
+        setAppointmentInfo(appointmentDetails);
+    }
     const onSubmit = data => {
-        const appointmentInfo = {...loggedInUser,service:serviceName,cost:serviceCost,img:img,status:"Pending"}
+        const appointmentDetails = {...appointmentInfo,service:serviceName,cost:serviceCost,img:img,status:"Pending"}
+        setShippingData(appointmentDetails);
+
+    };
+    const handlePayment = (paymentId)=>{
+        const appointmentDetails = {...shippingData,paymentId:paymentId};
+        setShippingData(appointmentDetails);
         fetch('http://localhost:5000/addAppointment',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(appointmentInfo)
+            body:JSON.stringify(appointmentDetails)
         })
         .then(res=>res.json())
         .then(data => {
@@ -40,8 +51,10 @@ const BookAppointment = () => {
                 sessionStorage.clear()
             }
         })
-    };
-    console.log(loggedInUser)
+ 
+    }
+
+    console.log(shippingData)
     return (
         <section>
             <Navbar></Navbar>
@@ -52,25 +65,30 @@ const BookAppointment = () => {
                 </div>
                 <div className="col-md-10 col-sm-10 mt-5 p-5">
                     <h2> Book Appointment </h2>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="form-group w-100 mt-3">
-                        <input type="text" name="email" defaultValue={loggedInUser.email} className="form-control"/>
-                        {errors.email && <span className="text-danger">This field is required</span>}
+                    <div style={{display: shippingData ? 'none': 'block'}}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="form-group w-100 mt-3">
+                            <input type="text" name="email" placeholder="Your Email" onBlur={handleBlur} className="form-control"/>
+                            {errors.email && <span className="text-danger">This field is required</span>}
+                        </div>
+                        <div className="form-group w-100 mt-3">
+                            <input type="text"  name="name" placeholder="Your Name" onBlur={handleBlur} className="form-control" />
+                            {errors.email && <span className="text-danger">This field is required</span>}
+                        </div>                   
+                        <div className="form-group w-100 mt-3">
+                            <input type="text"  name="service"  className="form-control" defaultValue={serviceName} />
+                            {errors.email && <span className="text-danger">This field is required</span>}
+                        </div>
+                        <div className="form-group w-100 mt-3">
+                            <input type="text" defaultValue={serviceCost} name="email"  className="form-control"/>
+                            {errors.email && <span className="text-danger">This field is required</span>}
+                        </div>
+                        <input type="submit" className="btn btn-success mt-3 text-white"/>
+                    </form>
                     </div>
-                    <div className="form-group w-100 mt-3">
-                        <input type="text"  name="name" defaultValue={loggedInUser.name}  className="form-control" />
-                        {errors.email && <span className="text-danger">This field is required</span>}
-                    </div>                   
-                    <div className="form-group w-100 mt-3">
-                        <input type="text"  name="service"  className="form-control" defaultValue={serviceName} />
-                        {errors.email && <span className="text-danger">This field is required</span>}
+                    <div style={{display: shippingData ? 'block': 'none'}}>
+                        <Payment handlePayment={handlePayment}></Payment>
                     </div>
-                    <div className="form-group w-100 mt-3">
-                         <input type="text" defaultValue={serviceCost} name="email"  className="form-control"/>
-                        {errors.email && <span className="text-danger">This field is required</span>}
-                    </div>
-                    <input type="submit" className="btn btn-success mt-3 text-white"/>
-                </form>
                 </div>
             </div>
             
