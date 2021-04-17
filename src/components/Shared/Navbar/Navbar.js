@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../../App';
 
 const Navbar = () => {
+    const [isLoggedIn,setIsLoggedIn] = useState(false);
+    const [userName,setUserName] = useState(null);
+    useEffect(()=>{
+        const name = sessionStorage.getItem('name');
+        setUserName(name);
+
+    },[])
+    useEffect(()=>{
+        if(userName !=="undefined"){
+            setIsLoggedIn(true);
+        }else{
+            setIsLoggedIn(false);
+        }
+    },[userName])
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
@@ -21,7 +37,9 @@ const Navbar = () => {
                     <Link to="/dashboard" className="nav-link" aria-current="page" href="#">Dashboard</Link>
                     </li>
                     <li className="nav-item pe-5">
-                    <Link to="/login" className="nav-link" href="#">Login</Link>
+                      {
+                          isLoggedIn ?<p className="nav-link" > {userName} </p >:<Link to="/login" className="nav-link" >  Login  </Link> 
+                      }
                     </li>
                 </ul>
             </div>

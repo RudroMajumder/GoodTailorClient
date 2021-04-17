@@ -10,7 +10,7 @@ const Services = () => {
         AOS.init({duration:2000})
     },[])
     useEffect(()=>{
-        fetch('http://localhost:5000/services')
+        fetch('https://dry-brook-25151.herokuapp.com/services')
         .then( res=> res.json())
         .then( data => setServices(data))
     },[])

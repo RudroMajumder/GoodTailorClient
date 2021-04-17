@@ -7,8 +7,20 @@ import { FcFullTrash } from "react-icons/fc";
 const ManageService = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
     const [services,setServices] = useState([]);
+        const [isAdmin,setIsAdmin] = useState(false);
+    const email = sessionStorage.getItem("email");
     useEffect(()=>{
-            fetch('http://localhost:5000/services')
+
+        fetch('https://dry-brook-25151.herokuapp.com/isAdmin',{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({email:email})
+        })
+        .then(res=>res.json())
+        .then(data=>setIsAdmin(data))
+    },[email])
+    useEffect(()=>{
+            fetch('https://dry-brook-25151.herokuapp.com/services')
             .then( res=> res.json())
             .then( data => setServices(data))
     },[])
@@ -27,7 +39,7 @@ const ManageService = () => {
 
     const handleDelete = (id) =>{
         console.log(id)
-        fetch(`http://localhost:5000/delete/${id}`,{
+        fetch(`https://dry-brook-25151.herokuapp.com/delete/${id}`,{
             method:"DELETE",
             headers:{"Content-Type":"application.json"},
             body:JSON.stringify()
@@ -43,7 +55,7 @@ const ManageService = () => {
             <div className="row">
                 <div className="col-md-2 col-sm-2 col-lg-2">
                     <FcMenu size={"50px"} onClick={handleSidebar} style={toggleStyle} className="toggle"/>
-                    <Sidebar sidebarOpen={sidebarOpen}></Sidebar>
+                    <Sidebar sidebarOpen={sidebarOpen} isAdmin={isAdmin}></Sidebar>
                 </div>
                 <div className="col-md-10 col-sm-10 col-lg-10 mt-5 p-5 ">
                     <h2> Manage Services </h2>

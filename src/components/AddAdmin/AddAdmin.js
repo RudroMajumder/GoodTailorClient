@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../Shared/Sidebar/Sidebar';
 import { FcMenu} from "react-icons/fc";
 import Navbar from '../Shared/Navbar/Navbar';
@@ -6,8 +6,20 @@ import { useForm } from "react-hook-form";
 
 const AddAdmin = () => {
     const [sidebarOpen,setSidebarOpen] = useState(false);
-    const [email,setEmail] = useState();
+    const [adminEmail,setAdminEmail] = useState();
     const { register, handleSubmit, formState: { errors } }  = useForm();
+        const [isAdmin,setIsAdmin] = useState(false);
+    const email = sessionStorage.getItem("email");
+    useEffect(()=>{
+
+        fetch('https://dry-brook-25151.herokuapp.com/isAdmin',{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({email:email})
+        })
+        .then(res=>res.json())
+        .then(data=>setIsAdmin(data))
+    },[email])
 
     const handleSidebar = () =>{
         if(!sidebarOpen){
@@ -23,19 +35,20 @@ const AddAdmin = () => {
 
     const handleBlur = e =>{
         const email = {email:e.target.value};
-        setEmail(email);
+        setAdminEmail(email);
     }
 
     const onSubmit = data => {
-        fetch('http://localhost:5000/addAdmin',{
+        fetch('https://dry-brook-25151.herokuapp.com/addAdmin',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(email)
+            body:JSON.stringify(adminEmail)
         })
         .then(res=>res.json())
         .then(data => {
             if(data){
                 alert("New Admin Added Successfully");
+                window.location.reload(true);
             }
         })
     };
@@ -45,7 +58,7 @@ const AddAdmin = () => {
             <div className="row">
                 <div className="col-md-2 col-sm-2">
                     <FcMenu size={"50px"} onClick={handleSidebar} style={toggleStyle} className="toggle"/>
-                    <Sidebar sidebarOpen={sidebarOpen}></Sidebar>
+                    <Sidebar sidebarOpen={sidebarOpen} isAdmin={isAdmin}></Sidebar>
                 </div>
                 <div className="col-md-10 col-sm-10 mt-5 p-5">
                     <h2> Add an Admin </h2>

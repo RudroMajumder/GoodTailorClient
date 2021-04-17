@@ -28,7 +28,7 @@ const AddReview = () => {
     // console.log(review)
     const onSubmit = data =>{
         const userReview = {...loggedInUser,...review};
-        fetch('http://localhost:5000/addReview',{
+        fetch('https://dry-brook-25151.herokuapp.com/addReview',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(userReview)

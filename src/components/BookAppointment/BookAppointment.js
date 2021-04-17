@@ -39,7 +39,7 @@ const BookAppointment = () => {
     const handlePayment = (paymentId)=>{
         const appointmentDetails = {...shippingData,paymentId:paymentId};
         setShippingData(appointmentDetails);
-        fetch('http://localhost:5000/addAppointment',{
+        fetch('https://dry-brook-25151.herokuapp.com/addAppointment',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(appointmentDetails)

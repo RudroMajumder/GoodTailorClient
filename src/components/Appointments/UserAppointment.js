@@ -21,11 +21,14 @@ const UserAppointment = ({appointment}) => {
             <div className="card rounded" style={{width: "20rem"}}>
                 <img src={appointment.img} className="card-img-top w-100" alt="..."/>
                 <div className="card-body">
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex ">
                         <h5 className="card-title mt-2">{appointment.name}  </h5>
                         <p style={statusStyle} className="status text-center">{appointment.status}</p>
                     </div>
-                    <p className="card-text">${appointment.cost}</p>
+                    <div className="d-flex justify-content-between">
+                        <h5 className="card-title mt-4">{appointment.service}  </h5>
+                        <p className="card-text mt-4">${appointment.cost}</p>
+                    </div>
                 </div>
             </div>
         </div>

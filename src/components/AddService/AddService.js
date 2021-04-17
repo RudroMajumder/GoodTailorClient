@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../Shared/Sidebar/Sidebar';
 import { FcMenu} from "react-icons/fc";
 import Navbar from '../Shared/Navbar/Navbar';
@@ -10,7 +10,18 @@ const AddService = () => {
     const { register, handleSubmit, formState: { errors } }  = useForm();
     const [serviceInfo,setServiceInfo ] = useState({});
     const [imgURL,setImgURL] = useState(null);
+    const [isAdmin,setIsAdmin] = useState(false);
+    const email = sessionStorage.getItem("email");
+    useEffect(()=>{
 
+        fetch('https://dry-brook-25151.herokuapp.com/isAdmin',{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({email:email})
+        })
+        .then(res=>res.json())
+        .then(data=>setIsAdmin(data))
+    },[email])
     const handleSidebar = () =>{
         if(!sidebarOpen){
             setSidebarOpen(true);
@@ -45,7 +56,7 @@ const AddService = () => {
             newInfo = {...serviceInfo,img:imgURL};
         }
         setServiceInfo(newInfo);
-        fetch('http://localhost:5000/addService',{
+        fetch('https://dry-brook-25151.herokuapp.com/addService',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(serviceInfo)
@@ -64,7 +75,7 @@ const AddService = () => {
             <div className="row">
                 <div className="col-md-2 col-sm-2">
                 <FcMenu size={"50px"} onClick={handleSidebar} style={toggleStyle} className="toggle"/>
-                <Sidebar sidebarOpen={sidebarOpen}></Sidebar>
+                <Sidebar sidebarOpen={sidebarOpen} isAdmin={isAdmin}></Sidebar>
                 </div>
 
                 <div className="col-md-10 col-sm-10 mt-5 p-5">

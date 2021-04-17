@@ -36,6 +36,7 @@ const Login = () => {
     }
 
     sessionStorage.setItem( "email",loggedInUser.email);
+    sessionStorage.setItem( "name",loggedInUser.name);
     return (
         <div >
             <Navbar/>

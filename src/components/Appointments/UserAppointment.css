@@ -1,5 +1,7 @@
 .status{
-    width:100px;
+    width:80px;
     padding:5px;
     margin:auto ;
+    position:absolute;
+    right:5px;
 }

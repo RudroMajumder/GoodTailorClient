@@ -13,7 +13,7 @@ const DashBoard = () => {
     const email = sessionStorage.getItem("email");
     useEffect(()=>{
 
-        fetch('http://localhost:5000/isAdmin',{
+        fetch('https://dry-brook-25151.herokuapp.com/isAdmin',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({email:email})
@@ -23,7 +23,7 @@ const DashBoard = () => {
     },[email])
 
     useEffect(()=>{
-        fetch('http://localhost:5000/appointments',{
+        fetch('https://dry-brook-25151.herokuapp.com/appointments',{
             method:"POST",
             headers:{"content-type":"application/json"},
             body:JSON.stringify({email:email})

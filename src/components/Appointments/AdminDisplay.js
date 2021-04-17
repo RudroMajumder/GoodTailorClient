@@ -20,7 +20,7 @@ const AdminDisplay = ({appointments}) => {
     }
     console.log(status);
     useEffect(()=>{
-        fetch(`http://localhost:5000/update`,{
+        fetch(`https://dry-brook-25151.herokuapp.com/update`,{
             method:"PATCH",
             headers:{"content-type":"application/json"},
             body:JSON.stringify(status)
